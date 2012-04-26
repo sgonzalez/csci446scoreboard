@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Scoreboard</title>
-  </head>
-  <body>
-   	<h1>Santiago Gonzalez</h1>
-  </body>
+<head>
+  <title>Guess the Number</title>
+  <link href="../app/assets/stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script src="../app/assets/javascripts/main.js"></script>
+</head>
+<body>
+
+<h1>Guess-the-Number</h1>
+<p class="subtitle">Fool! You have followed a link here and now your life depends on guessing my magic number!</p>
+<p>Between 1 and 100! Because it is magic!</p>
+<h2 id="score"><span id="guessesLeft"></span> Guesses Left</h2>
+<form id="guessTheNumber">
+  <input type="text" size="3" name="guess" id="guess">
+  <br>
+  <input type="submit" id="btnGuess" value="Guess!">
+</form>
+
+<h2><span class="highScore">High</span> Scores</h2>
+<div id="highScores"></div>
+
+</body>  
 </html>
