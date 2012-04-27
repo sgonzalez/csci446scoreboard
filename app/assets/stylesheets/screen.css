@@ -1,0 +1,42 @@
+body {
+  background-color: #313131;
+  color: #EEE8CD;
+  font-family: helvetica, arial, sans-serif;
+  text-align: center;
+}
+
+h1, h2 {
+  font-family: 'Nosifer', cursive;
+  color: #A39480;
+}
+
+h1 {
+  font-size: 4em;
+  margin-top: 0px;
+}
+
+h2 span.highScore {
+  color: #444;
+  font-size: 2em;
+  margin-right: -50px;
+}
+
+h2#score {
+  color: #FFC125;
+  margin: 0px;
+}
+
+input#guess {
+  font-size: 8em;
+}
+
+input#btnGuess {
+  font-size: 20em;
+}
+
+form#guessTheNumber {
+  width: 50%;
+  margin: auto;
+  border-bottom: 1px solid #000;
+  padding: 20px;
+}
