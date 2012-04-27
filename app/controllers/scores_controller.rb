@@ -16,6 +16,7 @@ class ScoresController < ApplicationController
 
     respond_to do |format|
       format.json { render json: @score }
+      format.js  { render json: @score, callback: params[:callback] }
     end
   end
 

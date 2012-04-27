@@ -8,33 +8,33 @@ $(function() {
 
 	$('#guessTheNumber').submit(function() {
 		var guess = $("input[name='guess']").val();
-		
+
 		if (guess < actualNum.toString()) {
 			alert("To Low");
 		} else if (guess > actualNum.toString()) {
 			alert("To High");
 		} else {
-		  hasWon = true;
+			hasWon = true;
 		}
-		
-		
+
+
 		if (!hasWon && guessesLeft > 0) {
 			guessesLeft--;
 			updateScore(guessesLeft);
 		} else {
 			alert("YOU WIN!");
-			
+
 			var name = prompt('What is your name?', 'Anonymous');
 			if (name) addHighScore(10-guessesLeft, name)
 			else alert("No score added to scoreboard!");
 			resetGame();
 		}
-		
+
 		if (guessesLeft == 0) {
 			alert("YOU LOSE!");
 			resetGame();
 		}
-		
+
 		return false;
 	});
 
@@ -47,11 +47,29 @@ function resetGame() {
 	populateHighScores(highScores);
 	actualNum = Math.floor(Math.random() * 100) + 1
 	var guess = $("input[name='guess']").val('');
+	
+	fetch(1);
+	fetch(2);
 }
 
 function addHighScore(score, name) {
 	highScores.push([score, name]);
 }
+
+function fetch(id){
+	$.ajax({
+		url: "http://localhost:3000/scores/" + id + ".js",
+		dataType: "jsonp",
+		type: "GET",
+		processData: false,
+		contentType: "application/json",
+		success: function(data) {
+			$('#' + id).
+			append('<li>Name: ' + data['name'] + '</li>');
+			append('<li>Points: ' + data['points'] + '</li>');
+		}
+	});
+};
 
 function populateHighScores(scores) {
 	$('div#highScores').html('');
