@@ -45,11 +45,11 @@ function resetGame() {
 	guessesLeft = 10;
 	hasWon = false;
 	updateScore(guessesLeft);
-	actualNum = Math.floor(Math.random() * 100) + 1
+	actualNum = Math.floor(Math.random() * 100) + 1;
+	alert(actualNum);
 	var guess = $("input[name='guess']").val('');
 	
 	fetch();
-	populateHighScores(highScores);
 }
 
 function addHighScore(score, name) {
@@ -57,7 +57,7 @@ function addHighScore(score, name) {
 }
 
 function pushScoreToServer(score, name) {
-	$.post(server, { name: name, score: score } );
+	$.post(server, { "name": name, "points": parseInt(score) } );
 }
 
 function fetch(){
@@ -68,13 +68,14 @@ function fetch(){
 		processData: false,
 		contentType: "application/json",
 		success: function(data) {
-			for (var i = 0; i < result.length; i++) { 
+			for (var i = 0; i < data.length; i++) { 
 				//$('#1').append('<li>Name: ' + data[i]['name'] + '</li>').append('<li>Points: ' + data[i]['points'] + '</li>');
-				addHighScore(data[i]['points'], data[i]['name']);
+				addHighScore(data[i].points, data[i].name);
 			}
+			populateHighScores(highScores);
 		}
 	});
-};
+}
 
 function populateHighScores(scores) {
 	$('div#highScores').html('');
