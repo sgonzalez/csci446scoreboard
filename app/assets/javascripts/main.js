@@ -1,7 +1,8 @@
 var guessesLeft;
 var actualNum;
 var hasWon;
-var highScores = new Array([9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
+var highScores = new Array();//[9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
+var server = "http://localhost:3000/scores"
 
 $(function() {
 	resetGame();
@@ -25,7 +26,7 @@ $(function() {
 			alert("YOU WIN!");
 
 			var name = prompt('What is your name?', 'Anonymous');
-			if (name) addHighScore(10-guessesLeft, name)
+			if (name) pushScoreToServer(10-guessesLeft, name)
 			else alert("No score added to scoreboard!");
 			resetGame();
 		}
@@ -44,29 +45,33 @@ function resetGame() {
 	guessesLeft = 10;
 	hasWon = false;
 	updateScore(guessesLeft);
-	populateHighScores(highScores);
 	actualNum = Math.floor(Math.random() * 100) + 1
 	var guess = $("input[name='guess']").val('');
 	
-	fetch(1);
-	fetch(2);
+	fetch();
+	populateHighScores(highScores);
 }
 
 function addHighScore(score, name) {
 	highScores.push([score, name]);
 }
 
-function fetch(id){
+function pushScoreToServer(score, name) {
+	$.post(server, { name: name, score: score } );
+}
+
+function fetch(){
 	$.ajax({
-		url: "http://localhost:3000/scores/" + id + ".js",
+		url: server,
 		dataType: "jsonp",
 		type: "GET",
 		processData: false,
 		contentType: "application/json",
 		success: function(data) {
-			$('#' + id).
-			append('<li>Name: ' + data['name'] + '</li>');
-			append('<li>Points: ' + data['points'] + '</li>');
+			for (var i = 0; i < result.length; i++) { 
+				//$('#1').append('<li>Name: ' + data[i]['name'] + '</li>').append('<li>Points: ' + data[i]['points'] + '</li>');
+				addHighScore(data[i]['points'], data[i]['name']);
+			}
 		}
 	});
 };
