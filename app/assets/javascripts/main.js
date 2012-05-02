@@ -52,7 +52,7 @@ function resetGame() {
 }
 
 function addHighScore(score, name) {
-	highScores.push([String.parseInt(score), name]);
+	highScores.push([parseInt(score), name]);
 }
 
 function pushScoreToServer(score, name) {
