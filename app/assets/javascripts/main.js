@@ -2,7 +2,7 @@ var guessesLeft;
 var actualNum;
 var hasWon;
 var highScores = new Array();//[9, "HarryJamesPotter"], [3, "ZedCthulhu"], [2, "NearlyDied"]);
-var server = "http://pure-mist-2350.herokuapp.com/scores"
+var server = "http://pure-mist-2350.herokuapp.com/scores";
 
 $(function() {
 	resetGame();
