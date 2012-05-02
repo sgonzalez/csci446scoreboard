@@ -16,8 +16,7 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    @score = Score.new(params)
-    Rails.logger.info params
+    @score = Score.new(name: params[:name], points: params[:points])
     respond_to do |format|
       if @score.save
         format.json { render json: @score, status: :created, location: @score }
