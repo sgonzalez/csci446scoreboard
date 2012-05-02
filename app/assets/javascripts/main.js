@@ -26,7 +26,7 @@ $(function() {
 			alert("YOU WIN!");
 
 			var name = prompt('What is your name?', 'Anonymous');
-			if (name) pushScoreToServer(10-guessesLeft, name)
+			if (name) { pushScoreToServer(10-guessesLeft, name); pauseComp(100); }
 			else alert("No score added to scoreboard!");
 			resetGame();
 		}
@@ -49,6 +49,11 @@ function resetGame() {
 	var guess = $("input[name='guess']").val('');
 	
 	fetch();
+}
+
+function pausecomp(ms) {
+	ms += new Date().getTime();
+	while (new Date() < ms){}
 }
 
 function addHighScore(score, name) {
