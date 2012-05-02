@@ -77,7 +77,7 @@ function fetch(){
 }
 
 function populateHighScores(scores) {
-	$('div#highScores').html('');
+	$('div#highScores').empty();
 	for (var i = 0; i < scores.length; ++i) {
 		$('div#highScores').append("<p>" + scores[i][0] + " " + scores[i][1] + "</p>");
 	}
