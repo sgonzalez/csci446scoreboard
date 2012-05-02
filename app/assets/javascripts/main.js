@@ -46,6 +46,7 @@ function resetGame() {
 	hasWon = false;
 	updateScore(guessesLeft);
 	actualNum = Math.floor(Math.random() * 100) + 1;
+	alert(actualNum);
 	var guess = $("input[name='guess']").val('');
 	
 	fetch();
